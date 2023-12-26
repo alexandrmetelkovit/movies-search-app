@@ -46,26 +46,13 @@ const getNameMovieFromUser = () => {
 //очистка инпута
 const clearInput = () => (movieNameNode.value = "");
 
-// const getMovies = () => {
-// 	fetch(`http://www.omdbapi.com/?s=${movieName}&apikey=2f759f6`)
-// 	.then((response) => {
-// 		if (response.ok) {
-// 			return response.json();
-// 		}
-// 	})
-// 	.then((res) )
-// }
-
-
 export const getMovies = async(movieName) => {
-	// const response = await fetch(`http://www.omdbapi.com/?s=${movieName}&apikey=2f759f6`)
 	const response = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${movieName}`)
 
 	const movies = await response.json()
 
 	return movies;
 }
-
 
 const renderMovies = (movies) => {
 	console.log(movies)
@@ -76,15 +63,19 @@ const renderMovies = (movies) => {
 		movieWrapper.className = 'movies__list';
 
 		movies.Search.forEach(e => {
+			const movieLink = document.createElement('a');
+			movieLink.href = `https://www.omdbapi.com/?apikey=${API_KEY}&s=${movieName}`;
+
 			const movieEl = document.createElement('li');
 			movieEl.className = 'movie';
+
+			movieLink.appendChild(movieEl)
 
 			const moviePoster = document.createElement('div');
 			moviePoster.className = 'poster';
 
 			const imgLink = document.createElement('img');
 			imgLink.setAttribute('src', `${e.Poster}`);
-			// imgLink.textContent = `${e.Poster}`;
 
 			const wrapperDesc = document.createElement('div');
 			wrapperDesc.className = 'wrapper__description';
@@ -101,6 +92,7 @@ const renderMovies = (movies) => {
 			wrapperType.className = 'wrapper__type';
 			wrapperType.innerText = `${e.Type}`;
 
+			// movieLink.appendChild(movieEl);
 			movieEl.appendChild(moviePoster);
 			movieEl.appendChild(wrapperDesc);
 			moviePoster.appendChild(imgLink);
