@@ -14,46 +14,34 @@
 	<link rel="stylesheet" href="styles/reset.css" />
 	<link rel="stylesheet" href="styles/index.css" />
 	<link rel="stylesheet" href="styles/header.css" />
-	<link rel="stylesheet" href="styles/validation.css" />
 	<link rel="stylesheet" href="styles/movies.css" />
 </head>
 
 <body>
 	<header class="header">
 		<div class="container">
-			<h1 class="header__title">Приложение "поиск фильмов"</h1>
+			<h1 class="header__title">Movie-search app</h1>
 		</div>
 	</header>
 	<main class="page">
 		<div class="container">
 			<section class="request">
 				<form action="" class="movies__form" autocomplete="off">
-					<input type="text" id="movieName" class="movie__name-input" placeholder="Введите название" />
-					<button type="button" id="movieAddButton" class="movie__add-button">
-						Найти
+					<input type="text" id="movieName" class="movie__name-input" placeholder="Enter movie title..." />
+					<button type="button" id="movieAddBtn" class="movie__add-button">
+						Search
 					</button>
 				</form>
-				<div id="validationMessage" class="validation__message validation__message-hidden">
-				</div>
 			</section>
-			<section id="movies" class="movies">
-				<!-- <ul id="moviesList" class='movies__list'>
-					<li class='movie__poster'>
-						<div class="poster">
-							<img src="">
-						</div>
-						<div class="wrapper__description">
-							<p class="wrapper__name"></p>
-							<p class="wrapper__year"></p>
-							<p class="wrapper__type"></p>
-						</div>
-					</li> -->
+			<section class=" movies">
+				<ul id="moviesList" class='movies__list'>
 				</ul>
 			</section>
 		</div>
 	</main>
 
-	<script type="module" src="scripts/index.js"></script>
+	<script src="scripts/index.js"></script>
+
 </body>
 
 </html>

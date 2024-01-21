@@ -1,0 +1,108 @@
+.movie__card {
+	max-width: 100%;
+}
+
+.movie__card-wrap {
+	background-color: #433f3f;
+	padding: 35px;
+	border-radius: 10px;
+}
+
+.movie__wrap {
+	display: flex;
+	column-gap: 40px;
+	margin-bottom: 30px;
+}
+
+.movie__img {
+	width: 400px;
+	height: 600px;
+	flex-shrink: 0;
+}
+
+.movie__wrap-text {
+	height: 600px;
+}
+
+.movie__desc {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.movie__title {
+	color: #fff;
+	font-size: 35px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+}
+
+.movie__year,
+.movie__rated,
+.movie__release,
+.movie__runtime,
+.movie__genre,
+.movie__director,
+.movie__scenario,
+.movie__actors,
+.movie__plot {
+	color: #baadc3;
+	font-size: 25px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+.span__year,
+.span__rated,
+.span__release,
+.span__runtime,
+.span__genre,
+.span__director,
+.span__scenario,
+.span__actors {
+	color: #0094FF;
+	font-size: 25px;
+	font-weight: 400;
+}
+
+.back-btn {
+	margin: 30px 0;
+	padding: 7px;
+	background: #181818;
+	border: none;
+	font-size: 35px;
+	line-height: 70px;
+	font-weight: 700;
+	color: #fff;
+	cursor: pointer;
+}
+
+.back-btn:hover {
+	transition: 0.5s ease;
+	color: rgb(55, 58, 236);
+}
+
+@media (max-width: 767px) {
+	.movie__wrap {
+		flex-direction: column;
+		align-items: center;
+		margin-bottom: 30px;
+		gap: 10px;
+	}
+
+	.movie__img {
+		width: 400px;
+		height: 600px;
+	}
+
+	.movie__wrap-text {
+		display: flex;
+		height: 100%;
+	}
+
+	.movie__desc {
+		align-items: center;
+	}
+}

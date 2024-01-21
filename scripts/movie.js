@@ -1,81 +1,156 @@
-import{getMovies} from './index.js'
-
 const movieCardNode = document.getElementById('movieCard');
+const backBtnNode = document.getElementById('backBtn');
 
-let movie = [];
+let movie = []
 
-const renderMovieNewPage = () => {
+const params = new URLSearchParams(location.search);
+const movieId = params.get('i');
+
+console.log(movieId);
+
+fetch(`https://www.omdbapi.com/?apikey=2f759f6&i=${movieId}`)
+
+	.then((response) => {
+		if (!response.ok) {
+			return;
+		} 
+		return response.json();
+	})
+
+  .then((data) => {
+    renderMovieNewPage(data)
+		console.log(data)
+  });
+
+const renderMovieNewPage = (movie) => {
+
 	movieCardNode.innerHTML = '';
 
-movie.forEach(e => {
+	const movieWrapCard = document.createElement('div')
+	movieWrapCard.className = 'movie__card-wrap';
 
-		const movieWrapper = document.createElement('div')
-		movieWrapper.className = 'movie';
+	const movieWrap = document.createElement('div');
+	movieWrap.className = ('movie__wrap');
 
-		const movieImg = document.createElement('div');
-		movieImg.className = 'movie__img';
-		movieImg.setAttribute('src', `${e.Poster}`);
+	const movieImg = document.createElement('img');
+	movieImg.className = 'movie__img';
+	movieImg.setAttribute('src', `${movie.Poster}`);
 
-		const movieText = document.createElement('div');
-		movieText.className = 'movie__text';
+	const movieWrapText = document.createElement('div');
+	movieWrapText.className = 'movie__wrap-text';
 
-		const movieTitle = document.createElement('p');
-		movieTitle.innerHTML.className = 'movie__title-card';
-		movieTitle.innerText = `${e.Title}`;
+	const movieDesc = document.createElement('ul');
+	movieDesc.className = 'movie__desc';
 
-		const movieYear = document.createElement('p');
-		movieYear.className = 'movie__year-card';
-		movieTitle.innerText = `${e.Year}`;
+	const movieTitle = document.createElement('li');
+	movieTitle.className = 'movie__title';
+	movieTitle.innerText = `${movie.Title}`;
 
-		const movieRated = document.createElement('p');
-		movieRated.className = 'movie__rated-card';
-		movieRated.innerText = `${e.Rated}`;
-		
-		const movieRelease = document.createElement('p');
-		movieRelease.className = 'movie__release-card';
-		movieRelease.innerText = `${e.Released}`;
+	const movieYear = document.createElement('li');
+	movieYear.className = 'movie__year';
+	movieYear.innerText = 'Year: ' ;
 
-		const movieRunTime = document.createElement('p');
-		movieRunTime.className = 'movie__runtime';
-		movieRunTime.innerText = `${e.Runtime}`;
+	const spanYear = document.createElement('span');
+	spanYear.className = 'span__year';
+	spanYear.innerText = `${movie.Year}`;
 
-		const movieGenre = document.createElement('p');
-		movieGenre.className = 'movie__genre-card';
-		movieGenre.innerText = `${e.Genre}`;
+	movieYear.appendChild(spanYear);
 
-		const movieDirector = document.createElement('p');
-		movieDirector.className = 'movie__director-card';
-		movieDirector.innerText = `${e.Director}`;
+	const movieRated = document.createElement('li');
+	movieRated.className = 'movie__rated';
+	movieRated.innerText = 'Rated: ';
 
-		const movieWriter = document.createElement('p');
-		movieWriter.className = 'movie__scenario-card';
-		movieWriter.innerText = `${e.Writer}`;
+	const spanRated = document.createElement('span');
+	spanRated.className = 'span__rated';
+	spanRated.innerText = `${movie.Rated}`;
 
-		const movieActors = document.createElement('p');
-		movieActors.className = 'movie__actors-card';
-		movieActors.innerText = `${e.Actors}`;
+	movieRated.appendChild(spanRated);
+	
+	const movieRelease = document.createElement('li');
+	movieRelease.className = 'movie__release';
+	movieRelease.innerText = 'Released: ';
 
-		const moviePlotCard = document.createElement('div');
-		moviePlotCard.className = 'movie__plot-card';
-		
-		const moviePlot = document.createElement('p');
-		moviePlot.className = 'movie__plot';
+	const spanRelease = document.createElement('span');
+	spanRelease.className = 'span__release';
+	spanRelease.innerText = `${movie.Released}`;
 
-		movieWrapper.appendChild(movieImg);
-		movieWrapper.appendChild(movieText);
-		movieWrapper.appendChild(movieTitle);
-		movieWrapper.appendChild(movieYear);
-		movieWrapper.appendChild(movieRated);
-		movieWrapper.appendChild(movieRelease);
-		movieWrapper.appendChild(movieRunTime);
-		movieWrapper.appendChild(movieGenre);
-		movieWrapper.appendChild(movieDirector);
-		movieWrapper.appendChild(movieWriter);
-		moviePlotCard.appendChild(moviePlot);
-		movieWrapper.appendChild(moviePlotCard);
+	movieRelease.appendChild(spanRelease);
 
-		movieCardNode.appendChild(movieWrapper);
+	const movieRunTime = document.createElement('li');
+	movieRunTime.className = 'movie__runtime';
+	movieRunTime.innerText = 'Runtime: ';
 
+	const spanRunTime = document.createElement('span');
+	spanRunTime.className = 'span__runtime';
+	spanRunTime.innerText = `${movie.Runtime}`;
 
-});
+	movieRunTime.appendChild(spanRunTime);
+
+	const movieGenre = document.createElement('li');
+	movieGenre.className = 'movie__genre';
+	movieGenre.innerText = 'Genre: '
+
+	const spanGenre = document.createElement('span');
+	spanGenre.className = 'span__genre';
+	spanGenre.innerText = `${movie.Genre}`;
+
+	movieGenre.appendChild(spanGenre);
+
+	const movieDirector = document.createElement('li');
+	movieDirector.className = 'movie__director';
+	movieDirector.innerText = 'Director: ';
+
+	const spanDirector = document.createElement('span');
+	spanDirector.className = 'span__director';
+	spanDirector.innerText = `${movie.Director}`;
+
+	movieDirector.appendChild(spanDirector);
+
+	const movieScenario = document.createElement('li');
+	movieScenario.className = 'movie__scenario';
+	movieScenario.innerText = 'Scenario: ';
+
+	const spanScenario = document.createElement('span');
+	spanScenario.className = 'span__scenario';
+	spanScenario.innerText = `${movie.Writer}`;
+
+	movieScenario.appendChild(spanScenario);
+
+	const movieActors = document.createElement('li');
+	movieActors.className = 'movie__actors';
+	movieActors.innerText = 'Actors: ';
+
+	const spanActors = document.createElement('span');
+	spanActors.className = 'span__actors';
+	spanActors.innerText = `${movie.Actors}`;
+
+	movieActors.appendChild(spanActors);
+
+	const moviePlot = document.createElement('p');
+	moviePlot.className = 'movie__plot';
+	moviePlot.innerText = `Plot: ${movie.Plot}`;
+
+	movieWrapCard.appendChild(movieWrap);
+	movieWrap.appendChild(movieImg);
+	movieWrap.appendChild(movieWrapText);
+	movieWrapText.appendChild(movieDesc);
+	movieDesc.appendChild(movieTitle);
+	movieDesc.appendChild(movieYear);
+	movieDesc.appendChild(movieRated);
+	movieDesc.appendChild(movieRelease);
+	movieDesc.appendChild(movieRunTime);
+	movieDesc.appendChild(movieGenre);
+	movieDesc.appendChild(movieDirector);
+	movieDesc.appendChild(movieScenario);
+	movieDesc.appendChild(movieActors);
+	movieWrapCard.appendChild(moviePlot);
+
+	movieCardNode.appendChild(movieWrapCard);
 }
+
+const backBtn = () => {
+  history.back();
+}
+
+backBtnNode.addEventListener('click', 
+backBtn);
