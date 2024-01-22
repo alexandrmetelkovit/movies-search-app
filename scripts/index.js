@@ -9,8 +9,7 @@ const apiKey = '2f759f6';
 
 let movies = [];
 
-const clearInput = () => 
-	movieNameNode.value = "";
+const clearInput = () => movieNameNode.value = "";
 
 const renderMovies = () => {
 	const movieName = movieNameNode.value;
@@ -40,7 +39,9 @@ const renderMovies = () => {
 			errorSearchNode.innerText = ERROR_SEARCH_MESSAGE;
 			moviesListNode.innerHTML = '';
 			moviesListNode.appendChild(errorSearchNode);
+
 		} else {
+			
 			moviesListNode.innerHTML = '';
 
 			data.Search.forEach((e) => {

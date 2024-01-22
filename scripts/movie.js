@@ -128,7 +128,7 @@ const renderMovieNewPage = (movie) => {
 
 	const moviePlot = document.createElement('p');
 	moviePlot.className = 'movie__plot';
-	moviePlot.innerText = `Plot: ${movie.Plot}`;
+	moviePlot.innerText = `${movie.Plot}`;
 
 	movieWrapCard.appendChild(movieWrap);
 	movieWrap.appendChild(movieImg);

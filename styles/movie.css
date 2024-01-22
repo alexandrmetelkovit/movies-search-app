@@ -54,6 +54,10 @@
 	line-height: normal;
 }
 
+.movie__plot {
+	text-align: justify;
+}
+
 .span__year,
 .span__rated,
 .span__release,
@@ -92,9 +96,14 @@
 		gap: 10px;
 	}
 
+	.movie__title {
+		text-align: center;
+		word-wrap: break-word;
+	}
+
 	.movie__img {
-		width: 400px;
-		height: 600px;
+		width: 300px;
+		height: 450px;
 	}
 
 	.movie__wrap-text {
